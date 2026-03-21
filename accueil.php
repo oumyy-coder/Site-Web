@@ -27,7 +27,7 @@ $articles = $stmt->fetchAll();
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ActuLive</title>
+    <title>ESPACTU</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
