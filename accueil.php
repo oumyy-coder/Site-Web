@@ -13,8 +13,8 @@ $stmt = $pdo->prepare("
     SELECT articles.*, categories.nom AS categorie,
            utilisateurs.nom AS auteur
     FROM articles
-    JOIN categories ON articles.id_categorie = categories.id
-    JOIN utilisateurs ON articles.id_auteur = utilisateurs.id
+    LEFT JOIN categories ON articles.categorie_id = categories.id
+    LEFT JOIN utilisateurs ON articles.auteur_id = utilisateurs.id
     ORDER BY date_publication DESC
     LIMIT :limite OFFSET :offset
 ");
@@ -48,14 +48,21 @@ $articles = $stmt->fetchAll();
 </div>
 
 <div class="main">
+    <?php if (count($articles) === 0): ?>
+        <p style="color:#6B6B6B;font-size:14px;font-family:Arial,sans-serif;margin-bottom:2rem;">
+            Aucun article disponible pour le moment.
+        </p>
+    <?php endif; ?>
+
     <?php foreach ($articles as $i => $article): ?>
         <div class="list-card" onclick="location.href='articles/detail.php?id=<?= $article['id'] ?>'">
             <div class="list-num"><?= str_pad($i + 1 + $offset, 2, '0', STR_PAD_LEFT) ?></div>
             <div class="list-body">
                 <p class="list-title"><?= htmlspecialchars($article['titre']) ?></p>
+                <p class="list-desc"><?= htmlspecialchars($article['description']) ?></p>
                 <div class="list-meta">
-                    <span class="badge"><?= htmlspecialchars($article['categorie']) ?></span>
-                    <span>Par <?= htmlspecialchars($article['auteur']) ?> · <?= $article['date_publication'] ?></span>
+                    <span class="badge"><?= htmlspecialchars($article['categorie'] ?? 'Non classé') ?></span>
+                    <span>Par <?= htmlspecialchars($article['auteur'] ?? 'Inconnu') ?> · <?= date('d M Y', strtotime($article['date_publication'])) ?></span>
                 </div>
             </div>
         </div>
