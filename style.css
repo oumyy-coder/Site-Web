@@ -331,3 +331,58 @@ a { text-decoration: none; color: inherit; }
     .nav-links a { display: none; }
     .main { padding: 1.5rem 1rem; }
 }
+
+/* ===== MENU ===== */
+nav {
+    background: #0f0f0f;
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav .nav-brand {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li a {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    transition: color 0.2s;
+    padding: 4px 0;
+}
+
+nav ul li a:hover { color: #fff; }
+
+nav ul li a.actif {
+    color: #fff;
+    border-bottom: 2px solid #c8371a;
+    padding-bottom: 2px;
+}
+
+nav .nav-user {
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+}
+
+nav .nav-user span {
+    color: #fff;
+    font-weight: 600;
+}
